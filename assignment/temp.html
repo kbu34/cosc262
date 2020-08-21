@@ -1,0 +1,33 @@
+<html><head><style>
+table {font-size: 100%; border-collapse: collapse}
+td, th  {border: 1px solid LightGrey; padding: 2px; }
+td del {background-color: yellow; text-decoration: none;}
+td del  {{background-color: yellow; text-decoration: none;}
+</style></head><body><h1>Show Differences (COSC262 2019)</h1><table>
+<tr><th>Previous</th><th>Current</th></tr>
+<tr><td><pre># ============== DELETEs =====================</pre></td><td><pre># ============== DELETEs =====================</pre></td></tr>
+<tr><td style="background-color:#F1C40F"><pre># TODO: add docstrings</pre></td><td style="background-color:LightGrey"><pre></pre></td></tr>
+<tr><td><pre>@app.route(&#x27;/queue/&lt;hostname&gt;&#x27;, methods=[&#x27;DELETE&#x27;])</pre></td><td><pre>@app.route(&#x27;/queue/&lt;hostname&gt;&#x27;, methods=[&#x27;DELETE&#x27;])</pre></td></tr>
+<tr><td><pre>def delete(hostname):</pre></td><td><pre>def delete(hostname):</pre></td></tr>
+<tr><td style="background-color:LightGrey"><pre></pre></td><td style="background-color:#ABEBC6"><pre>    &quot;&quot;&quot;Handle delete request from the given host&quot;&quot;&quot;</pre></td></tr>
+<tr><td><pre>    try:</pre></td><td><pre>    try:</pre></td></tr>
+<tr><td><pre>        data = json.loads(request.get_data())</pre></td><td><pre>        data = json.loads(request.get_data())</pre></td></tr>
+<tr><td style="background-color:LightYellow"><pre>        mac_address = data[&#x27;mac<del>A</del>ddress&#x27;]</pre></td><td style="background-color:LightYellow"><pre>        mac_address = data[&#x27;mac_address&#x27;]</pre></td></tr>
+<tr><td><pre>    except:</pre></td><td><pre>    except:</pre></td></tr>
+<tr><td><pre>        abort(400, &#x27;Missing or invalid user data&#x27;)</pre></td><td><pre>        abort(400, &#x27;Missing or invalid user data&#x27;)</pre></td></tr>
+<tr><td style="background-color:LightYellow"><pre>    status = queue.dequeue(hostname, mac<del>A</del>ddress)</pre></td><td style="background-color:LightYellow"><pre>    status = queue.dequeue(hostname, mac<del>_</del>address)</pre></td></tr>
+<tr><td><pre>    return (&#x27;&#x27;, status)</pre></td><td><pre>    return (&#x27;&#x27;, status)</pre></td></tr>
+<tr><td><pre></pre></td><td><pre></pre></td></tr>
+<tr><td><pre></pre></td><td><pre></pre></td></tr>
+<tr><td><pre>@app.route(&#x27;/queue&#x27;, methods=[&#x27;DELETE&#x27;])</pre></td><td><pre>@app.route(&#x27;/queue&#x27;, methods=[&#x27;DELETE&#x27;])</pre></td></tr>
+<tr><td style="background-color:LightYellow"><pre>def e<del>m</del><del>p</del><del>t</del><del>y</del>_queue():</pre></td><td style="background-color:LightYellow"><pre>def <del>c</del><del>l</del>e<del>a</del><del>r</del>_queue():</pre></td></tr>
+<tr><td style="background-color:LightGrey"><pre></pre></td><td style="background-color:#ABEBC6"><pre>    &quot;&quot;&quot;Clear the queue. Valid only if coming from tutor machine&quot;&quot;&quot;</pre></td></tr>
+<tr><td><pre>    if request.remote_addr.upper() != TUTOR_MACHINE.upper():</pre></td><td><pre>    if request.remote_addr.upper() != TUTOR_MACHINE.upper():</pre></td></tr>
+<tr><td style="background-color:LightYellow"><pre>        abort(403, &quot;<del>N</del>ot aut<del>h</del>ori<del>s</del>e<del>d</del>&quot;)</pre></td><td style="background-color:LightYellow"><pre>        abort(403, &quot;<del>O</del><del>n</del><del>l</del><del>y</del> t<del>h</del>e tutor <del>m</del>a<del>c</del><del>h</del>i<del>n</del>e <del>c</del>a<del>n</del> <del>c</del><del>l</del>ear t<del>h</del>e <del>q</del>ueue&quot;)</pre></td></tr>
+<tr><td><pre>    else:</pre></td><td><pre>    else:</pre></td></tr>
+<tr><td><pre>        queue.clear_queue()</pre></td><td><pre>        queue.clear_queue()</pre></td></tr>
+<tr><td style="background-color:LightYellow"><pre>        response = jsonify({&quot;message&quot;: &quot;Queue emp<del>t</del>ied&quot;})</pre></td><td style="background-color:LightYellow"><pre>        response = jsonify({&quot;message&quot;: &quot;Queue <del>c</del><del>l</del>eared&quot;})</pre></td></tr>
+<tr><td><pre>        response.status_code = 204</pre></td><td><pre>        response.status_code = 204</pre></td></tr>
+<tr><td><pre>        return response</pre></td><td><pre>        return response</pre></td></tr>
+</table>
+</body></html>
